@@ -1,11 +1,15 @@
-//waf to take any digit 0 to 9
-//return its in word
-// 0 - one
-//5 - Five 
+//waf to take any digit (0-9) and return its in word
+//1-one
+//5-five
 
-const word = (a) => {
+const ToWord = (digit) => {
     const words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-    return words[a];
+    return words[digit];
 }
-console.log(word(0));
-console.log(word(5));
+console.log(ToWord(5));
+console.log(ToWord(3));
+console.log(ToWord(6));
+
+// frontend:- html, css, js, react
+// backend:- Node.js, springb oot, fastapi, django, php
+// html-fastapi, css-django 

@@ -1,10 +1,13 @@
-console.log("Ansh Sharma");
+console.log("Aaryan Singhal");
 
-//write a function to take two number and return their sum
-
-const sum = (a, b) => {
-  return a + b;
+// write a function to take two number and return their sum
+function sum(a, b) {
+    return a + b;
+}
+const add=(a,b)=>{
+    return a+b;
 };
-
-const result = sum(10, 20);
-console.log(result);
+const add2=(a,b)=>a+b;
+console.log(sum(20, 10));
+console.log(add(20, 10));
+console.log(add2(20, 10));
