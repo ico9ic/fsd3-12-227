@@ -16,3 +16,12 @@ a function not executed immediately after it must be executed after the while it
  - priority (nextTick, promise, setImmediate/setTimeout)
 - Modules (.mjs) -> follow modular approach -> import
     - priority (promise, nextTick, setImmediate/setTimeout)
+
+## s module directly communicate with os rather than browser
+the common operation of file or folder are
+1. file -> writeFile, readFile, appendFile
+2. folder -> mkdir, md, rmdir, rm
+3. File method -> stack,lstack,rstack
+4. watch -> watch, unwatch
+
+## all functions start with promise so it must call with awake
