@@ -1,17 +1,14 @@
-{
-  "products": [
-    {
-      "id": 101,
-      "name": "Laptop",
-      "price": 999.99,
-      "qty": 10
-    },
-
-    {
-      "id": 102,
-      "name": "Smartphone",
-      "price": 499.99,
-      "qty": 20
-    }
-  ]
-}
+[
+  {
+    "id": 940,
+    "name": "aloo",
+    "price": 40,
+    "qty": 10
+  },
+  {
+    "id": 367,
+    "name": "baigan",
+    "price": 100,
+    "qty": 54
+  }
+]
