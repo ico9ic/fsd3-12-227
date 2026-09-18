@@ -11,7 +11,7 @@ const readData = async (filename) => {
     console.log("Read data finished");
   }
 };
-
+//
 const writeData = async (filename, content) => {
   try {
     await writeFile(filename, content);
