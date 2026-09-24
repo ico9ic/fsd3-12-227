@@ -16,10 +16,36 @@ let users = [
 
 let nextId = 3;
 
-export const getUsers = () => users;
+const getAllUsers = () => {
+  return users;
+};
+
+export const getUsers = () => {
+  return getAllUsers();
+};
 
 export const addUser = (user) => {
   user.id = nextId++;
   users.push(user);
   return user;
+};
+
+export const updateUser = (pid, updatedData) => {
+  const index = users.findIndex((user) => user.id === pid);
+  if (index === -1) {
+    return null;
+  }
+
+  users[index] = { ...users[index], ...updatedData, id: pid };
+  return users[index];
+};
+
+export const deleteUser = (pid) => {
+  const index = users.findIndex((user) => user.id === pid);
+  if (index === -1) {
+    return null;
+  }
+
+  const [deletedUser] = users.splice(index, 1);
+  return deletedUser;
 };
