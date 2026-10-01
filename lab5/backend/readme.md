@@ -34,9 +34,8 @@ cd backend
 9.  create `prg1.js` in backend
 10. wrtie the script below to start express serer
 
-        ```
-
-        import express from "express";
+    ```
+    import express from "express";
 
     const app = express();
 
@@ -46,7 +45,4 @@ cd backend
 
     // this line must be last line
     app.listen(4444, () => console.log("prg1 is running on port 4444"));
-
-    ```
-
     ```
