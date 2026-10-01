@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iPhone Duo | Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #000000;
+        color: #f5f5f7;
+        overflow-x: hidden;
+      }
+
+      /* Premium Text Gradients */
+      .text-gradient {
+        background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .text-gradient-accent {
+        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Glassmorphism Utilities */
+      .glass-nav {
+        background: rgba(10, 10, 12, 0.7);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .glass-card {
+        background: linear-gradient(
+          180deg,
+          rgba(30, 30, 34, 0.6) 0%,
+          rgba(15, 15, 18, 0.8) 100%
+        );
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        transition:
+          transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.5s ease;
+      }
+
+      .glass-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 242, 254, 0.1);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* Keyframe Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotateX(10deg) rotateY(-15deg);
+        }
+        50% {
+          transform: translateY(-20px) rotateX(15deg) rotateY(-10deg);
+        }
+        100% {
+          transform: translateY(0px) rotateX(10deg) rotateY(-15deg);
+        }
+      }
+
+      @keyframes pulseGlow {
+        0% {
+          box-shadow: 0 0 40px rgba(79, 172, 254, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 80px rgba(168, 85, 247, 0.3);
+        }
+        100% {
+          box-shadow: 0 0 40px rgba(79, 172, 254, 0.1);
+        }
+      }
+
+      /* Scroll Reveal System */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* CSS 3D iPhone Duo Device */
+      .device-container {
+        perspective: 1200px;
+        transform-style: preserve-3d;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .device-half {
+        width: 170px;
+        height: 360px;
+        background: #000;
+        border-radius: 24px;
+        position: relative;
+        border: 2px solid #2a2a2a;
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+        transition: transform 0.5s ease;
+      }
+
+      .device-half::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        border-radius: 20px;
+        background: #0a0a0c;
+        border: 1px solid #1a1a1c;
+      }
+
+      .device-hinge {
+        width: 8px;
+        height: 340px;
+        background: linear-gradient(90deg, #111, #333, #111);
+        margin: 0 -1px;
+        border-radius: 4px;
+        z-index: 10;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+      }
+
+      .screen-content {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border-radius: 14px;
+        /* Mocking a premium wallpaper */
+        background: url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop")
+          center/cover;
+        opacity: 0.9;
+        overflow: hidden;
+      }
+
+      .screen-content::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+      }
+
+      /* Buttons & Glows */
+      .glow-btn {
+        position: relative;
+        background: transparent;
+        color: #fff;
+        padding: 1rem 3rem;
+        border-radius: 30px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .glow-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+      .glow-btn:hover {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+      .glow-btn:hover::before {
+        left: 100%;
+      }
+
+      .bg-glow-aurora {
+        position: absolute;
+        width: 80vw;
+        height: 80vh;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(79, 172, 254, 0.15) 0%,
+          rgba(168, 85, 247, 0.1) 40%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        pointer-events: none;
+        filter: blur(60px);
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-cyan-500 selection:text-white">
+    <nav class="fixed w-full z-50 glass-nav top-0">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="product.html"
+          class="text-xl font-bold tracking-tight text-white hover:opacity-80 transition-opacity"
+        >
+          <span class="text-gradient-accent">iPhone</span> Duo
+        </a>
+        <div class="space-x-8 text-sm font-medium">
+          <a href="product.html" class="text-white">Overview</a>
+          <a
+            href="contact.html"
+            class="text-gray-400 hover:text-white transition-colors"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="bg-white text-black px-5 py-2 rounded-full hover:bg-gray-200 transition-colors"
+            >Buy</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="relative pt-32 pb-20 overflow-hidden">
+      <div class="bg-glow-aurora"></div>
+
+      <!-- Hero Section -->
+      <section
+        class="max-w-7xl mx-auto px-6 min-h-[85vh] flex flex-col lg:flex-row items-center justify-between"
+      >
+        <div
+          class="w-full lg:w-1/2 z-10 text-center lg:text-left mb-20 lg:mb-0 reveal"
+        >
+          <h2
+            class="text-cyan-400 font-semibold tracking-widest text-xs mb-6 uppercase letter-spacing-2"
+          >
+            Pro beyond pro
+          </h2>
+          <h1
+            class="text-6xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 text-gradient"
+          >
+            Unfold<br />the future.
+          </h1>
+          <p
+            class="text-xl text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0 font-light leading-relaxed"
+          >
+            A marvel of engineering. Two stunning Super Retina XDR displays that
+            fold seamlessly into one pocketable device.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5"
+          >
+            <a href="contact.html" class="glow-btn text-center w-full sm:w-auto"
+              >Pre-order now</a
+            >
+            <a
+              href="#design"
+              class="text-white hover:text-cyan-400 transition-colors flex items-center gap-2 font-medium"
+            >
+              Explore design
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="w-full lg:w-1/2 flex justify-center items-center reveal"
+          style="transition-delay: 0.2s"
+        >
+          <div
+            class="device-container flex items-center justify-center"
+            style="
+              animation:
+                pulseGlow 5s infinite,
+                float 8s ease-in-out infinite;
+            "
+          >
+            <!-- Left Half -->
+            <div
+              class="device-half"
+              style="transform: rotateY(-15deg) translateZ(15px)"
+            >
+              <div
+                class="screen-content"
+                style="background-position: left center"
+              ></div>
+            </div>
+            <!-- Hinge -->
+            <div class="device-hinge"></div>
+            <!-- Right Half -->
+            <div
+              class="device-half"
+              style="transform: rotateY(15deg) translateZ(15px)"
+            >
+              <div
+                class="screen-content"
+                style="background-position: right center"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Design Section -->
+      <section id="design" class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div class="text-center mb-24 reveal">
+          <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gradient">
+            Forged in titanium.
+          </h2>
+          <p
+            class="text-gray-400 text-xl max-w-2xl mx-auto font-light leading-relaxed"
+          >
+            Using aerospace-grade titanium, the iPhone Duo is incredibly strong
+            yet unbelievably light. The custom-engineered micro-hinge allows for
+            a flawless, gapless fold.
+          </p>
+        </div>
+
+        <!-- Full width image mock (CSS styling) -->
+        <div
+          class="w-full h-[60vh] rounded-[40px] overflow-hidden reveal bg-[#0a0a0c] border border-white/10 relative flex items-center justify-center group"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"
+          ></div>
+          <div
+            class="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-700"
+            style="
+              background: url(&quot;https://images.unsplash.com/photo-1558882224-dda166733046?q=80&w=2669&auto=format&fit=crop&quot;)
+                center/cover;
+              filter: grayscale(100%) contrast(120%);
+            "
+          ></div>
+          <h3
+            class="relative z-20 text-3xl md:text-5xl font-bold text-white tracking-tight"
+          >
+            The ultimate flex.
+          </h3>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="glass-card p-10 rounded-[32px] reveal">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center mb-8 border border-cyan-500/30"
+            >
+              <svg
+                class="w-7 h-7 text-cyan-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-bold mb-4 text-white">8.2" Canvas</h3>
+            <p class="text-gray-400 leading-relaxed text-lg font-light">
+              Unfold into a stunning edge-to-edge iPad-like experience in the
+              palm of your hands.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="glass-card p-10 rounded-[32px] reveal"
+            style="transition-delay: 0.1s"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center mb-8 border border-purple-500/30"
+            >
+              <svg
+                class="w-7 h-7 text-purple-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-bold mb-4 text-white">A18 Bionic</h3>
+            <p class="text-gray-400 leading-relaxed text-lg font-light">
+              A desktop-class 3nm chip powers unprecedented multitasking across
+              two screens.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="glass-card p-10 rounded-[32px] reveal lg:col-span-1 md:col-span-2"
+            style="transition-delay: 0.2s"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-100/20 to-gray-500/20 flex items-center justify-center mb-8 border border-gray-400/30"
+            >
+              <svg
+                class="w-7 h-7 text-gray-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                ></path>
+                <circle
+                  cx="12"
+                  cy="13"
+                  r="4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                ></circle>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-bold mb-4 text-white">Spatial Vision</h3>
+            <p class="text-gray-400 leading-relaxed text-lg font-light">
+              Record spatial video effortlessly, ready to be experienced in full
+              3D immersive reality.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Footer -->
+      <footer class="mt-20 border-t border-white/10 pt-20 pb-10 text-center">
+        <h2 class="text-4xl font-bold mb-8 text-white reveal">
+          Time to unfold.
+        </h2>
+        <div class="reveal" style="transition-delay: 0.1s">
+          <a
+            href="contact.html"
+            class="inline-block p-[1px] rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:scale-105 transition-transform duration-300"
+          >
+            <div class="px-10 py-4 bg-black rounded-full">
+              <span class="text-white font-semibold text-lg tracking-wide"
+                >Contact Sales & Pre-order</span
+              >
+            </div>
+          </a>
+        </div>
+        <p class="text-gray-600 text-sm mt-16 font-light">
+          © 2026 Apple Inc. (Fictional Concept). All rights reserved.
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Setup Intersection Observer for smooth reveal animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              // Optional: observer.unobserve(entry.target); if you only want it to animate once
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll(".reveal");
+        revealElements.forEach((el) => observer.observe(el));
+
+        // Trigger reveals for elements immediately visible on load
+        setTimeout(() => {
+          revealElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              el.classList.add("active");
+            }
+          });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
